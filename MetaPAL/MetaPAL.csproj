@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-MetaPAL2-caf6dc39-e85f-4810-9b5d-d559570aa4df</UserSecretsId>
+    <UserSecretsId>aspnet-MetaPAL-caf6dc39-e85f-4810-9b5d-d559570aa4df</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

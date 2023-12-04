@@ -1,4 +1,4 @@
-using MetaPAL2.Data;
+using MetaPAL.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

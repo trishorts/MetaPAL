@@ -1,6 +1,6 @@
 ﻿using Omics.SpectrumMatch;
 
-namespace MetaPAL2.Models
+namespace MetaPAL.Models
 {
     public class SpectrumMatch : SpectrumMatchFromTsv
     {

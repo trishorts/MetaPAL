@@ -1,6 +1,6 @@
 ﻿using Omics.Fragmentation;
 
-namespace MetaPAL2.Models
+namespace MetaPAL.Models
 {
     public class MatchedFragmentIonModel : MatchedFragmentIon
     {

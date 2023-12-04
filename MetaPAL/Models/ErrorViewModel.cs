@@ -1,4 +1,4 @@
-namespace MetaPAL2.Models
+namespace MetaPAL.Models
 {
     public class ErrorViewModel
     {

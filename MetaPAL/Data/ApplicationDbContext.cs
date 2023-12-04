@@ -1,9 +1,9 @@
-﻿using MetaPAL2.Models;
+﻿using MetaPAL.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Omics.Fragmentation;
 
-namespace MetaPAL2.Data
+namespace MetaPAL.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

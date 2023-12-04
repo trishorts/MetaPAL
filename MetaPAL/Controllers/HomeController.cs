@@ -1,8 +1,8 @@
-﻿using MetaPAL2.Models;
+﻿using MetaPAL.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace MetaPAL2.Controllers
+namespace MetaPAL.Controllers
 {
     public class HomeController : Controller
     {
