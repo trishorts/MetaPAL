@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MetaPAL.Data;
 using MetaPAL.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MetaPAL.Controllers
 {
@@ -39,7 +40,7 @@ namespace MetaPAL.Controllers
         public async Task<IActionResult> ShowSearchResults(string SearchPhrase)
         {
             return _context.SpectrumMatch != null ?
-                View(await _context.SpectrumMatch.ToListAsync()) :
+                View(await _context.SpectrumMatch.Where(b=>b.BaseSeq.Contains(SearchPhrase)).ToListAsync()) :
                 Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
         }
         // GET: SpectrumMatches/Details/5
@@ -61,6 +62,7 @@ namespace MetaPAL.Controllers
         }
 
         // GET: SpectrumMatches/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
