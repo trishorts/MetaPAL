@@ -23,5 +23,7 @@ namespace MetaPAL.Data
 
             base.OnModelCreating(builder);
         }
+
+        public DbSet<MetaPAL.Models.SpectrumMatch>? SpectrumMatch { get; set; }
     }
 }
