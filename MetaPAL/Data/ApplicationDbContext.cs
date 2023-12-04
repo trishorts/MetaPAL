@@ -15,9 +15,15 @@ namespace MetaPAL.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<SpectrumMatch>()
-                .Ignore("MatchedFragmentIon");
+                .Ignore("MatchedIons");
+            builder.Entity<SpectrumMatch>()
+                .Ignore("ChildScanMatchedIons");
+            builder.Entity<SpectrumMatch>()
+                .Ignore("VariantCrossingIons");
 
             base.OnModelCreating(builder);
         }
+
+        public DbSet<MetaPAL.Models.SpectrumMatch>? SpectrumMatch { get; set; }
     }
 }

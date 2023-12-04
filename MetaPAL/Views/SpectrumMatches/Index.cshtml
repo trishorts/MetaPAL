@@ -1,0 +1,257 @@
+﻿@model IEnumerable<MetaPAL.Models.SpectrumMatch>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MatchedFragmentIons)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullSequence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ms2ScanNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileNameWithoutExtension)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecursorScanNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecursorCharge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecursorMz)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecursorMass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RetentionTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Score)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpectrumMatchCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Accession)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpectralAngle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PEP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PEP_QValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalIonCurrent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeltaScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BaseSeq)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EssentialSeq)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmbiguityLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MissedCleavage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MonoisotopicMass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MassDiffDa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MassDiffPpm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GeneName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrganismName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IntersectingSequenceVariations)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdentifiedSequenceVariations)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpliceSites)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartAndEndResiduesInParentSequence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PreviousResidue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NextResidue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DecoyContamTarget)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QValueNotch)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatchedFragmentIons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullSequence)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ms2ScanNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileNameWithoutExtension)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecursorScanNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecursorCharge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecursorMz)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecursorMass)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RetentionTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpectrumMatchCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Accession)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpectralAngle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PEP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PEP_QValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalIonCurrent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeltaScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notch)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BaseSeq)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EssentialSeq)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmbiguityLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MissedCleavage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonoisotopicMass)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MassDiffDa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MassDiffPpm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GeneName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganismName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IntersectingSequenceVariations)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdentifiedSequenceVariations)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpliceSites)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartAndEndResiduesInParentSequence)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PreviousResidue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NextResidue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DecoyContamTarget)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QValueNotch)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
