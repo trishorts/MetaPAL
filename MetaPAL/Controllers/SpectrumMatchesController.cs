@@ -27,6 +27,21 @@ namespace MetaPAL.Controllers
                           Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
         }
 
+        // GET: ShowSearchForm
+        public async Task<IActionResult> ShowSearchForm()
+        {
+            return _context.SpectrumMatch != null ?
+                View() :
+                Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
+        }
+
+        // GET: ShowSearchResults
+        public async Task<IActionResult> ShowSearchResults(string SearchPhrase)
+        {
+            return _context.SpectrumMatch != null ?
+                View(await _context.SpectrumMatch.ToListAsync()) :
+                Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
+        }
         // GET: SpectrumMatches/Details/5
         public async Task<IActionResult> Details(int? id)
         {
