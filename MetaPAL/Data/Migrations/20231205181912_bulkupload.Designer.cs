@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MetaPAL.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231205171134_NullableSequenceVariations")]
-    partial class NullableSequenceVariations
+    [Migration("20231205181912_bulkupload")]
+    partial class bulkupload
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

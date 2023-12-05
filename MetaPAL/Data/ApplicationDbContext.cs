@@ -26,14 +26,14 @@ namespace MetaPAL.Data
             builder.Entity<SpectrumMatch>()
                 .Property(p => p.IntersectingSequenceVariations)
                 .IsRequired(false);
-            //builder.Entity<SpectrumMatch>()
-            //    .Property(p => p.PEP)
-            //    .HasConversion(v => double.IsNaN(v) ? -1 : v,
-            //        v => v);
-            //builder.Entity<SpectrumMatch>()
-            //    .Property(p => p.PEP_QValue)
-            //    .HasConversion(v => double.IsNaN(v) ? -1 : v,
-            //                           v => v);
+            builder.Entity<SpectrumMatch>()
+                .Property(p => p.PEP)
+                .HasConversion(v => double.IsNaN(v) ? -1 : v,
+                    v => v);
+            builder.Entity<SpectrumMatch>()
+                .Property(p => p.PEP_QValue)
+                .HasConversion(v => double.IsNaN(v) ? -1 : v,
+                                       v => v);
 
             base.OnModelCreating(builder);
         }

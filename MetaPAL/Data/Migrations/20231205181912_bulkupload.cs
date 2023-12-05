@@ -4,7 +4,7 @@
 
 namespace MetaPAL.Data.Migrations
 {
-    public partial class NullableSequenceVariations : Migration
+    public partial class bulkupload : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

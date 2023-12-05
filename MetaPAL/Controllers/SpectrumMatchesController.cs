@@ -25,6 +25,9 @@ namespace MetaPAL.Controllers
         // GET: SpectrumMatches
         public async Task<IActionResult> Index()
         {
+            // TEMPORARY: remove all spectrum matches from database
+            //await Task.Run(() => DataOperations.DataOperations.RemoveAll<SpectrumMatch>(_context));
+            
             if (_context.SpectrumMatch == null)
                 return Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
             return View(await _context.SpectrumMatch.ToListAsync());
