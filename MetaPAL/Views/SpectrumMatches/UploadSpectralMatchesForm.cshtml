@@ -1,0 +1,28 @@
+﻿@model MetaPAL.Models.SpectrumMatch
+
+@{
+    ViewData["Title"] = "UploadSpectralMatchesForm";
+}
+
+<h1>UploadSpectralMatchesForm</h1>
+
+<h4>SpectrumMatch</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UploadSpectralMatches">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="PsmPath" class="control-label"></label>
+                <input name="PsmPath" class="form-control" />
+            </div>
+        </form>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Upload" class="btn btn-primary" />
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

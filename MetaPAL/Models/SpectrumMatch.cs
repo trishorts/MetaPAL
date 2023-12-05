@@ -10,5 +10,50 @@ namespace MetaPAL.Models
         {
                 
         }
+
+        public static SpectrumMatch FromSpectrumMatchTsv(SpectrumMatchFromTsv smFromTsv)
+        {
+            return new SpectrumMatch()
+            {
+                Accession = smFromTsv.Accession,
+                AmbiguityLevel = smFromTsv.AmbiguityLevel,
+                BaseSeq = smFromTsv.BaseSeq,
+                DecoyContamTarget = smFromTsv.DecoyContamTarget,
+                DeltaScore = smFromTsv.DeltaScore,
+                Description = smFromTsv.Description,
+                EssentialSeq = smFromTsv.EssentialSeq,
+                FileNameWithoutExtension = smFromTsv.FileNameWithoutExtension,
+                FullSequence = smFromTsv.FullSequence,
+                GeneName = smFromTsv.GeneName,
+                IdentifiedSequenceVariations = smFromTsv.IdentifiedSequenceVariations,
+                IntersectingSequenceVariations = smFromTsv.IntersectingSequenceVariations,
+                MassDiffDa = smFromTsv.MassDiffDa,
+                MassDiffPpm = smFromTsv.MassDiffPpm,
+                MatchedFragmentIons = string.Join('*', smFromTsv.MatchedIons),
+                MissedCleavage = smFromTsv.MissedCleavage,
+                MonoisotopicMass = smFromTsv.MonoisotopicMass,
+                Ms2ScanNumber = smFromTsv.Ms2ScanNumber,
+                Name = smFromTsv.Name,
+                NextResidue = smFromTsv.NextResidue,
+                Notch = smFromTsv.Notch,
+                OrganismName = smFromTsv.OrganismName,
+                PEP = smFromTsv.PEP,
+                PEP_QValue = smFromTsv.PEP_QValue,
+                PrecursorCharge = smFromTsv.PrecursorCharge,
+                PrecursorMass = smFromTsv.PrecursorMass,
+                PrecursorMz = smFromTsv.PrecursorMz,
+                PrecursorScanNum = smFromTsv.PrecursorScanNum,
+                PreviousResidue = smFromTsv.PreviousResidue,
+                QValue = smFromTsv.QValue,
+                QValueNotch = smFromTsv.QValueNotch,
+                RetentionTime = smFromTsv.RetentionTime,
+                Score = smFromTsv.Score,
+                SpliceSites = smFromTsv.SpliceSites,
+                SpectralAngle = smFromTsv.SpectralAngle,
+                SpectrumMatchCount = smFromTsv.SpectrumMatchCount,
+                StartAndEndResiduesInParentSequence = smFromTsv.StartAndEndResiduesInParentSequence,
+                TotalIonCurrent = smFromTsv.TotalIonCurrent,
+            };
+        }
     }
 }
