@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MetaPAL.Data;
+using MetaPAL.DataOperations;
 using MetaPAL.Models;
 using Microsoft.AspNetCore.Authorization;
+using Readers;
 
 namespace MetaPAL.Controllers
 {
@@ -23,10 +25,41 @@ namespace MetaPAL.Controllers
         // GET: SpectrumMatches
         public async Task<IActionResult> Index()
         {
-              return _context.SpectrumMatch != null ? 
-                          View(await _context.SpectrumMatch.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
+            if (_context.SpectrumMatch == null)
+                return Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
+            return View(await _context.SpectrumMatch.ToListAsync());
         }
+
+        // GET: UploadSpectralMatchesForm
+        public async Task<IActionResult> UploadSpectralMatchesForm()
+        {
+            return _context.SpectrumMatch != null ?
+                View() :
+                Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
+        }
+
+        // GET: UploadSpectrumMatches
+        public async Task<IActionResult> UploadSpectralMatches(string PsmPath)
+        {
+            if (_context.SpectrumMatch == null)
+                return Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
+            try
+            {
+                foreach (var psm in SpectrumMatchTsvReader.ReadTsv(PsmPath, out _))
+                {
+                    _context.Add(SpectrumMatch.FromSpectrumMatchTsv(psm));
+                }
+
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
 
         // GET: ShowSearchForm
         public async Task<IActionResult> ShowSearchForm()
