@@ -49,9 +49,10 @@ namespace MetaPAL.Controllers
                 return Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
             try
             {
-                foreach (var psm in SpectrumMatchTsvReader.ReadTsv(PsmPath, out _))
+                foreach (var psm in SpectrumMatchTsvReader.ReadTsv(PsmPath, out _)
+                             .Select(SpectrumMatch.FromSpectrumMatchTsv))
                 {
-                    _context.Add(SpectrumMatch.FromSpectrumMatchTsv(psm));
+                    _context.Add(psm);
                 }
 
                 await _context.SaveChangesAsync();
