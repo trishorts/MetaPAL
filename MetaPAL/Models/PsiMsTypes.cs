@@ -158,9 +158,10 @@ namespace MetaPAL.Models
 
        /// <summary>
        /// Convert mzLib's DissociationType to DissociationMethodType. Most dissociation methods map to a PSI term.
-       /// Null values and DissociationTypes Unknown, AnyActivationType, Custom, and Autodetect are converted to  DissociationMethodType.Unknown.
+       /// DissociationTypes Unknown, AnyActivationType, Custom, and Autodetect are converted to  DissociationMethodType.Unknown.
+       /// Null value in = null value out
        /// </summary>
-       public static DissociationMethodType ToDissociationMethodType(this DissociationType? type)
+       public static DissociationMethodType? ToDissociationMethodType(this DissociationType? type)
         {
             switch(type)
             {
@@ -194,6 +195,8 @@ namespace MetaPAL.Models
                     return DissociationMethodType.NegativeElectronTransferDissociation;
                 case DissociationType.LowCID:
                     return DissociationMethodType.LowEnergyCollisionInducedDissociation;
+                case null:
+                    return null;
                 default:
                     return DissociationMethodType.Unknown;
             }
