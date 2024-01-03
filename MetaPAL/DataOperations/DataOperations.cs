@@ -4,13 +4,15 @@ namespace MetaPAL.DataOperations
 {
     public static class DataOperations
     {
-        public static async void RemoveAll<T>(ApplicationDbContext context) where T : class
+        public static async Task<Task> RemoveAll<T>(ApplicationDbContext context) where T : class
         {
             if (context.Set<T>() == null)
                 throw new ArgumentException($"Entity set 'ApplicationDbContext.{typeof(T).Name}'  is null.");
 
             context.Set<T>().RemoveRange(context.Set<T>());
             await context.SaveChangesAsync();
+
+            return Task.CompletedTask;
         }
     }
 }
