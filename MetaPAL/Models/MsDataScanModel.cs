@@ -240,7 +240,7 @@ namespace MetaPAL.Models
                 MassAnalyzerType = scan.MzAnalyzer.ToMassAnalyzerType(), 
                 TotalIonCurrent = (float)scan.TotalIonCurrent,
                 IonInjectionTime = (float?)scan.InjectionTime,
-                NativeID = scan.NativeId,
+                NativeId = scan.NativeId,
                 SelectedIonMz = (float?)scan.SelectedIonMZ,
                 SelectedIonChargeStateGuess = scan.SelectedIonChargeStateGuess,
                 SelectedIonIntensity = (float?)scan.SelectedIonIntensity,
