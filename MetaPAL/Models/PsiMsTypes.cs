@@ -1,4 +1,5 @@
 ﻿using ThermoFisher.CommonCore.Data.Business;
+using MassSpectrometry;
 
 namespace MetaPAL.Models
 {
@@ -79,6 +80,29 @@ namespace MetaPAL.Models
             PositiveScan
         }
 
+        public static MassAnalyzerType ToMassAnalyzerType(this MZAnalyzerType type)
+        {
+            switch (type)
+            {
+                case MZAnalyzerType.Orbitrap:
+                    return MassAnalyzerType.Orbitrap;
+                case MZAnalyzerType.TOF:
+                    return MassAnalyzerType.TimeOfFlight;
+                case MZAnalyzerType.FTICR:
+                    return MassAnalyzerType.FourierTransformIonCyclotronResonanceMassSpectrometer;
+                case MZAnalyzerType.Sector:
+                    return MassAnalyzerType.MagneticSector;
+                case MZAnalyzerType.Quadrupole:
+                    return MassAnalyzerType.Quadrupole;
+                case MZAnalyzerType.IonTrap2D:
+                    return MassAnalyzerType.IonTrap;
+                case MZAnalyzerType.IonTrap3D:
+                    return MassAnalyzerType.IonTrap;
+                default:
+                    return MassAnalyzerType.Unknown;
+            }
+        }
+
         /// <summary>
         /// id: MS:1000443
         /// name: mass analyzer type
@@ -127,8 +151,54 @@ namespace MetaPAL.Models
             //id: MS:1000288
             //name: cyclotron
             //def: "A device that uses an oscillating electric field and magnetic field to accelerate charged particles." [PSI: MS]
-            Cyclotron
+            Cyclotron,
+            // Not a PSI term, but rather a placeholder for any unknown type
+            Unknown
         }
+
+       /// <summary>
+       /// Convert mzLib's DissociationType to DissociationMethodType. Most dissociation methods map to a PSI term.
+       /// Null values and DissociationTypes Unknown, AnyActivationType, Custom, and Autodetect are converted to  DissociationMethodType.Unknown.
+       /// </summary>
+       public static DissociationMethodType ToDissociationMethodType(this DissociationType? type)
+        {
+            switch(type)
+            {
+                case DissociationType.CID:
+                    return DissociationMethodType.CollisionInducedDissociation;
+                case DissociationType.PD:
+                    return DissociationMethodType.PlasmaDesorption;
+                case DissociationType.PSD:
+                    return DissociationMethodType.PostSourceDecay;
+                case DissociationType.SID:
+                    return DissociationMethodType.SurfaceInducedDissociation;
+                case DissociationType.BIRD:
+                    return DissociationMethodType.BlackbodyInfraredRadiativeDissociation;
+                case DissociationType.ECD:
+                    return DissociationMethodType.ElectronCaptureDissociation;
+                case DissociationType.MPD:
+                    return DissociationMethodType.Photodissociation;
+                case DissociationType.UVPD:
+                    return DissociationMethodType.UltravioletPhotodissociation;
+                case DissociationType.ETD:
+                    return DissociationMethodType.ElectronTransferDissociation;
+                case DissociationType.PQD:
+                    return DissociationMethodType.PulsedQDissociation;
+                case DissociationType.ISCID:
+                    return DissociationMethodType.InSourceCollisionInducedDissociation;
+                case DissociationType.HCD:
+                    return DissociationMethodType.HCD;
+                case DissociationType.EThcD:
+                    return DissociationMethodType.EThcD;
+                case DissociationType.NETD:
+                    return DissociationMethodType.NegativeElectronTransferDissociation;
+                case DissociationType.LowCID:
+                    return DissociationMethodType.LowEnergyCollisionInducedDissociation;
+                default:
+                    return DissociationMethodType.Unknown;
+            }
+        }
+
         /// <summary>
         /// id: MS:1000044
         /// name: dissociation method
@@ -138,82 +208,98 @@ namespace MetaPAL.Models
         /// </summary>
         public enum DissociationMethodType
         {
-//            id: MS:1000422
-//name: beam-type collision-induced dissociation
-//def: "A collision-induced dissociation process that occurs in a beam-type collision cell." [PSI: MS]
-//            synonym: "HCD" EXACT []
-//            is_a: MS:1000133 ! collision-induced dissociation
+            //            id: MS:1000422
+            // name: beam-type collision-induced dissociation
+            // def: "A collision-induced dissociation process that occurs in a beam-type collision cell." [PSI: MS]
+            //            synonym: "HCD" EXACT []
+            //            is_a: MS:1000133 ! collision-induced dissociation
             HCD,
-//            id: MS:1000133
-//name: collision-induced dissociation
-//def: "The dissociation of an ion after collisional excitation. The term collisional-activated dissociation is not recommended." [PSI: MS]
-//            synonym: "CID" EXACT []
-//            synonym: "CAD" EXACT []
-//            synonym: "collisionally activated dissociation" EXACT []
+            //id: MS:1002631
+            //name: electron-transfer/higher-energy collision dissociation
+            //def: "Dissociation process combining electron-transfer dissociation and higher-energy collision dissociation. It combines ETD (reaction time) followed by HCD (activation energy)." [PSI: PI]
+            //synonym: "EThcD" EXACT []
+            //is_a: MS:1003181 ! combined dissociation method
+            EThcD,
+            //            id: MS:1000133
+            //name: collision-induced dissociation
+            //def: "The dissociation of an ion after collisional excitation. The term collisional-activated dissociation is not recommended." [PSI: MS]
+            //            synonym: "CID" EXACT []
+            //            synonym: "CAD" EXACT []
+            //            synonym: "collisionally activated dissociation" EXACT []
             CollisionInducedDissociation,
-//            id: MS:1000134
-//name: plasma desorption
-//def: "The ionization of material in a solid sample by bombarding it with ionic or neutral atoms formed as a result of the fission of a suitable nuclide, typically 252Cf. Synonymous with fission fragment ionization." [PSI: MS]
+            //            id: MS:1000134
+            //name: plasma desorption
+            //def: "The ionization of material in a solid sample by bombarding it with ionic or neutral atoms formed as a result of the fission of a suitable nuclide, typically 252Cf. Synonymous with fission fragment ionization." [PSI: MS]
             //synonym: "PD" EXACT []
             PlasmaDesorption,
-//            id: MS:1000135
-//name: post-source decay
-//def: "A technique specific to reflectron time-of-flight mass spectrometers where product ions of metastable transitions or collision-induced dissociations generated in the drift tube prior to entering the reflectron are m/z separated to yield product ion spectra." [PSI: MS]
-//            synonym: "PSD" EXACT []
+            //            id: MS:1000135
+            //name: post-source decay
+            //def: "A technique specific to reflectron time-of-flight mass spectrometers where product ions of metastable transitions or collision-induced dissociations generated in the drift tube prior to entering the reflectron are m/z separated to yield product ion spectra." [PSI: MS]
+            //            synonym: "PSD" EXACT []
             PostSourceDecay,
             //            id: MS:1000136
             //name: surface-induced dissociation
             //def: "Fragmentation that results from the collision of an ion with a surface." [PSI: MS]
             //            synonym: "SID" EXACT []
             SurfaceInducedDissociation,
-//            id: MS:1000242
-//name: blackbody infrared radiative dissociation
-//def: "A special case of infrared multiphoton dissociation wherein excitation of the reactant ion is caused by absorption of infrared photons radiating from heated blackbody surroundings, which are usually the walls of a vacuum chamber. See also infrared multiphoton dissociation." [PSI: MS]
-//            synonym: "BIRD" EXACT []
+            //            id: MS:1000242
+            //name: blackbody infrared radiative dissociation
+            //def: "A special case of infrared multiphoton dissociation wherein excitation of the reactant ion is caused by absorption of infrared photons radiating from heated blackbody surroundings, which are usually the walls of a vacuum chamber. See also infrared multiphoton dissociation." [PSI: MS]
+            //            synonym: "BIRD" EXACT []
             BlackbodyInfraredRadiativeDissociation,
-//            id: MS:1000250
-//name: electron capture dissociation
-//def: "A process in which a multiply protonated molecules interacts with a low energy electrons. Capture of the electron leads the liberation of energy and a reduction in charge state of the ion with the production of the (M + nH) (n-1)+ odd electron ion, which readily fragments." [PSI: MS]
-//            synonym: "ECD" EXACT []
+            //            id: MS:1000250
+            //name: electron capture dissociation
+            //def: "A process in which a multiply protonated molecules interacts with a low energy electrons. Capture of the electron leads the liberation of energy and a reduction in charge state of the ion with the production of the (M + nH) (n-1)+ odd electron ion, which readily fragments." [PSI: MS]
+            //            synonym: "ECD" EXACT []
             ElectronCaptureDissociation,
-//            id: MS:1000282
-//name: sustained off-resonance irradiation
-//def: "A technique associated with Fourier transform ion cyclotron resonance (FT-ICR) mass spectrometry to carry out ion/neutral reactions such as low-energy collision-induced dissociation. A radio-frequency electric field of slightly off-resonance to the cyclotron frequency of the reactant ion cyclically accelerates and decelerates the reactant ion that is confined in the Penning ion trap. The ion's orbit does not exceed the dimensions of ion trap while the ion undergoes an ion/neutral species process that produces a high average translational energy for an extended time." [PSI: MS]
-//            synonym: "SORI" EXACT []
+            //            id: MS:1000282
+            //name: sustained off-resonance irradiation
+            //def: "A technique associated with Fourier transform ion cyclotron resonance (FT-ICR) mass spectrometry to carry out ion/neutral reactions such as low-energy collision-induced dissociation. A radio-frequency electric field of slightly off-resonance to the cyclotron frequency of the reactant ion cyclically accelerates and decelerates the reactant ion that is confined in the Penning ion trap. The ion's orbit does not exceed the dimensions of ion trap while the ion undergoes an ion/neutral species process that produces a high average translational energy for an extended time." [PSI: MS]
+            //            synonym: "SORI" EXACT []
             SustainedOffResonanceIrradiation,
-//            id: MS:1000435
-//name: photodissociation
-//def: "A process wherein the reactant ion is dissociated as a result of absorption of one or more photons." [PSI: MS]
-//            synonym: "multiphoton dissociation" EXACT []
-//            synonym: "MPD" EXACT []
+            //            id: MS:1000435
+            //name: photodissociation
+            //def: "A process wherein the reactant ion is dissociated as a result of absorption of one or more photons." [PSI: MS]
+            //            synonym: "multiphoton dissociation" EXACT []
+            //            synonym: "MPD" EXACT []
             Photodissociation,
-//            id: MS:1000598
-//name: electron transfer dissociation
-//def: "A process to fragment ions in a mass spectrometer by inducing fragmentation of cations (e.g. peptides or proteins) by transferring electrons from radical-anions." [DOI:10.1073/pnas.0402700101, PMID:15210983, PSI:MS]
-//            synonym: "ETD" EXACT []
+            //id: MS:1003246
+            //name: ultraviolet photodissociation
+            //def: "Multiphoton ionization where the reactant ion dissociates as a result of the absorption of multiple UV photons." [PSI: MS]
+            //synonym: "UVPD" EXACT []
+            UltravioletPhotodissociation,
+            //            id: MS:1000598
+            //name: electron transfer dissociation
+            //def: "A process to fragment ions in a mass spectrometer by inducing fragmentation of cations (e.g. peptides or proteins) by transferring electrons from radical-anions." [DOI:10.1073/pnas.0402700101, PMID:15210983, PSI:MS]
+            //            synonym: "ETD" EXACT []
             ElectronTransferDissociation,
-//            id: MS:1000599
-//name: pulsed q dissociation
-//def: "A process that involves precursor ion activation at high Q, a time delay to allow the precursor to fragment, then a rapid pulse to low Q where all fragment ions are trapped. The product ions can then be scanned out of the ion trap and detected." [PSI: MS]
-//            synonym: "PQD" EXACT []
+            //            id: MS:1000599
+            //name: pulsed q dissociation
+            //def: "A process that involves precursor ion activation at high Q, a time delay to allow the precursor to fragment, then a rapid pulse to low Q where all fragment ions are trapped. The product ions can then be scanned out of the ion trap and detected." [PSI: MS]
+            //            synonym: "PQD" EXACT []
             PulsedQDissociation,
             //            id: MS:1001880
             //name: in-source collision-induced dissociation
             //def: "The dissociation of an ion as a result of collisional excitation during ion transfer from an atmospheric pressure ion source and the mass spectrometer vacuum." [PSI: MS]
             InSourceCollisionInducedDissociation,
-//            id: MS:1002000
-//name: LIFT
-//def: "A Bruker's proprietary technique where molecular ions are initially accelerated at lower energy, then collide with inert gas in a collision cell that is then 'lifted' to high potential. The use of inert gas is optional, as it could lift also fragments provided by LID." [DOI:10.1007/s00216-003-2057-0 , PMID:12830354]
+            //id: MS:1000433
+            //name: low-energy collision-induced dissociation
+            //def: "A collision-induced dissociation process wherein the precursor ion has the translational energy lower than approximately 1000 eV. This process typically requires multiple collisions and the collisional excitation is cumulative." [PSI: MS]
+            LowEnergyCollisionInducedDissociation,
+            //            id: MS:1002000
+            //name: LIFT
+            //def: "A Bruker's proprietary technique where molecular ions are initially accelerated at lower energy, then collide with inert gas in a collision cell that is then 'lifted' to high potential. The use of inert gas is optional, as it could lift also fragments provided by LID." [DOI:10.1007/s00216-003-2057-0 , PMID:12830354]
             LIFT,
             //            id: MS:1003181
             //name: combined dissociation method
             //def: "Combination of two or more dissociation methods that are known by a special term." [PSI: PI]
             CombinedDissociationMethod,
-//            id: MS:1003247
-//name: negative electron transfer dissociation
-//def: "A process to fragment ions in a mass spectrometer by inducing fragmentation of anions (e.g. peptides or proteins) by transferring electrons to a radical-cation." [DOI:10.1016/j.jasms.2005.01.015, PSI:MS]
-//            synonym: "NETD" EXACT []
-            NegativeElectronTransferDissociation
+            //            id: MS:1003247
+            //name: negative electron transfer dissociation
+            //def: "A process to fragment ions in a mass spectrometer by inducing fragmentation of anions (e.g. peptides or proteins) by transferring electrons to a radical-cation." [DOI:10.1016/j.jasms.2005.01.015, PSI:MS]
+            //            synonym: "NETD" EXACT []
+            NegativeElectronTransferDissociation,
+            Unknown
         }
     }
 }

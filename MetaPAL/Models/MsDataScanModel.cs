@@ -18,6 +18,10 @@ namespace MetaPAL.Models
         /// </summary>
         public Object MassSpectrum { get; protected set; }
 
+        #region HupoPsiProperties 
+        // The properties in this region all correspond to HUPO-PSI defined terms
+        // A complete list of these terms can be found here: https://github.com/HUPO-PSI/psi-ms-CV/blob/master/psi-ms.obo
+
         /// <summary>
         /// id: MS:1003057
         /// name: scan number
@@ -106,13 +110,6 @@ namespace MetaPAL.Models
         /// is_a: MS:1003058 ! spectrum property
         /// </summary>
         public float TotalIonCurrent { get; protected set; }
-
-
-        // TODO: Unclear about how to denote selected ion charge state and intensity, as there is no term for those specifically. 
-        // However, there is an "ion selection attriubte" term (MS:1000455). Not sure how to organize arrange
-
-        // TODO: There needs to be a nativeID field and a nativeID format (MS:1000767) field, but I can't find a term for the nativeID
-        // TODO: Determine the difference between nativeID string and scanDescription string
         /// <summary>
         /// id: MS:1000927
         /// name: ion injection time
@@ -185,6 +182,29 @@ namespace MetaPAL.Models
         /// </summary>
         public float NormalizedCollisionEnergy { get; protected set; }
 
+        #endregion
+
+        #region NonPSIProperties
+        // These properties don't map one-to-one to a PSI defined term.
+        // However, anyone who can create a property to store the same information using the PSI-vocabulary
+        // is encouraged to do so
+
+        /// <summary>
+        /// The instrument's best guess for the charge state of the selected precursor ion
+        ///  Possibly related to PSI term "ion selection attribute" (MS:1000455)
+        /// </summary>
+        public int SelectedIonChargeStateGuess { get; protected set; }
+        /// <summary>
+        /// The intensity of the selected precursor ion
+        ///  Possibly related to PSI term "ion selection attribute" (MS:1000455)
+        /// </summary>
+        public float SelectedIonIntensity { get; protected set; }
+        /// <summary>
+        /// TODO: Define the NativeID field. I'm not confident I know what it is
+        /// Possibly related to PSI term "nativeID format" (MS:1000767)
+        /// </summary>
+        public string NativeID { get; protected set; }
+        #endregion
 
         public MsDataScanModel()
         {
@@ -205,20 +225,20 @@ namespace MetaPAL.Models
                 ScanWindowLowerLimit = (float)scan.ScanWindowRange.Minimum,
                 ScanWindowUpperLimit = (float)scan.ScanWindowRange.Maximum,
                 FilterString = scan.ScanFilter,
-                //MassAnalyzerType = scan.MzAnalyzer, TODO: Create clever enum casting
+                MassAnalyzerType = scan.MzAnalyzer.ToMassAnalyzerType(), 
                 TotalIonCurrent = (float)scan.TotalIonCurrent,
                 IonInjectionTime = scan.InjectionTime == null ? -1 : (float)scan.InjectionTime,
-                // TODO: Native ID
+                NativeID = scan.NativeId,
                 SelectedIonMz = scan.SelectedIonMZ == null ? -1 : (float)scan.SelectedIonMZ,
-                // TODO: Selected ion charge state guess, selected ion intensity
+                SelectedIonChargeStateGuess = scan.SelectedIonChargeStateGuess ?? -1,
+                SelectedIonIntensity = scan.SelectedIonIntensity == null ? -1 : (float)scan.SelectedIonIntensity,
                 ExperimentalPrecursorMonoisotopicMz = scan.SelectedIonMonoisotopicGuessMz == null ? -1 : (float)scan.SelectedIonMonoisotopicGuessMz,
                 IsolationWindowTargetMz = scan.IsolationMz == null ? -1 : (float)scan.IsolationMz,
                 IsolationWindowUpperOffset = scan.IsolationWidth == null ? -1 : (float)(scan.IsolationWidth / 2),
                 IsolationWindowLowerOffset = scan.IsolationWidth == null ? -1 : (float)(-1 * scan.IsolationWidth / 2),
-                // TODO: Clever cast for dissociationtype
+                DissociationMethod = scan.DissociationType.ToDissociationMethodType(),
                 PrecursorScanNumber = scan.OneBasedPrecursorScanNumber == null ? -1 : (int)scan.OneBasedPrecursorScanNumber,
                 NormalizedCollisionEnergy = !Double.TryParse(scan.ScanDescription, out double collisionEnergy) ? -1 : (float)collisionEnergy
-                // TODO: Scan Description
             };
         }
     }
