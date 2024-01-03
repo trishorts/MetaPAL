@@ -26,7 +26,7 @@ namespace MetaPAL.Controllers
         public async Task<IActionResult> Index()
         {
             // TEMPORARY: remove all spectrum matches from database
-            await Task.Run(() => DataOperations.DataOperations.RemoveAll<SpectrumMatch>(_context));
+            //Task.Run(() => DataOperations.DataOperations.RemoveAll<SpectrumMatch>(_context)).Wait();
             
 
             if (_context.SpectrumMatch == null)
