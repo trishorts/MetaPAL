@@ -32,6 +32,11 @@ namespace MetaPAL.Models
         public string? IdentifiedSequenceVariations { get; set; }
         public string? Description { get; set; }
         public string? SpliceSites { get; set; }
+
+        // Variables below that are strings would ideally be characters or have a maximum length
+        // This will speed up the database queries, and is performed as shown below.
+        // However, any limit set could be ran into by ambiguous search results, leading to a failure to upload
+        //[MaxLength(16)]
         public string? StartAndEndResiduesInParentSequence { get; set; }
         public string? PreviousResidue { get; set; }
         public string? NextResidue { get; set; }
