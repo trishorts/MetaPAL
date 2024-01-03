@@ -26,8 +26,9 @@ namespace MetaPAL.Controllers
         public async Task<IActionResult> Index()
         {
             // TEMPORARY: remove all spectrum matches from database
-            //await Task.Run(() => DataOperations.DataOperations.RemoveAll<SpectrumMatch>(_context));
+            //Task.Run(() => DataOperations.DataOperations.RemoveAll<SpectrumMatch>(_context)).Wait();
             
+
             if (_context.SpectrumMatch == null)
                 return Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
             return View(await _context.SpectrumMatch.ToListAsync());
@@ -48,9 +49,10 @@ namespace MetaPAL.Controllers
                 return Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
             try
             {
-                foreach (var psm in SpectrumMatchTsvReader.ReadTsv(PsmPath, out _))
+                foreach (var psm in SpectrumMatchTsvReader.ReadTsv(PsmPath, out _)
+                             .Select(SpectrumMatch.FromSpectrumMatchTsv))
                 {
-                    _context.Add(SpectrumMatch.FromSpectrumMatchTsv(psm));
+                    _context.Add(psm);
                 }
 
                 await _context.SaveChangesAsync();
@@ -76,7 +78,7 @@ namespace MetaPAL.Controllers
         public async Task<IActionResult> ShowSearchResults(string SearchPhrase)
         {
             return _context.SpectrumMatch != null ?
-                View(await _context.SpectrumMatch.Where(b=>b.BaseSeq.Contains(SearchPhrase)).ToListAsync()) :
+                View(await _context.SpectrumMatch.Where(b=>b.BaseSequence.Contains(SearchPhrase)).ToListAsync()) :
                 Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
         }
         // GET: SpectrumMatches/Details/5
