@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaPAL", "MetaPAL\MetaPAL.csproj", "{FC18E2D7-18AD-4174-8C2A-6AF4B36F73ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{313F1135-D23E-495F-8CB4-85006847ECFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{313F1135-D23E-495F-8CB4-85006847ECFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

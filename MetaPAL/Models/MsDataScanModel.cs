@@ -1,6 +1,6 @@
 ﻿using MassSpectrometry;
 using MathNet.Numerics.RootFinding;
-using MetaPAL.ControlledVocabulary;
+using MetaPAL.Resources.ControlledVocabulary;
 using Microsoft.CodeAnalysis;
 using MzLibUtil.NoiseEstimation;
 using System;
@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata;
 using ThermoFisher.CommonCore.Data.Business;
-using static MetaPAL.ControlledVocabulary.PsiMsTypes;
+using static MetaPAL.Resources.ControlledVocabulary.PsiMsTypes;
 
 namespace MetaPAL.Models
 {
