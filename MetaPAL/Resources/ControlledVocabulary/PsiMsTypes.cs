@@ -1,7 +1,7 @@
 ﻿using ThermoFisher.CommonCore.Data.Business;
 using MassSpectrometry;
 
-namespace MetaPAL.ControlledVocabulary
+namespace MetaPAL.Resources.ControlledVocabulary
 {
     public static class PsiMsTypes
     {
