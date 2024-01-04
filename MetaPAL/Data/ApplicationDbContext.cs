@@ -1,5 +1,7 @@
-﻿using MetaPAL.Models;
+﻿using System.Data.Common;
+using MetaPAL.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Omics.Fragmentation;
 
@@ -17,8 +19,15 @@ namespace MetaPAL.Data
             base.OnModelCreating(builder);
         }
 
-        public DbSet<MetaPAL.Models.SpectrumMatch>? SpectrumMatch { get; set; }
+        public DbSet<SpectrumMatch>? SpectrumMatch { get; set; }
 
-        public DbSet<MsDataScanModel>? MsDataScans { get; set; }
+        public DbSet<MsDataScanModel> MsDataScans { get; set; }
+
+        public DbSet<DataFile> MsDataFiles { get; set; }
+        public DbSet<Experiment> Experiments { get; set; }
+        public DbSet<MetaData> MetaData { get; set; }
     }
+
+    
+
 }
