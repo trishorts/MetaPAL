@@ -1,7 +1,7 @@
 ﻿using ThermoFisher.CommonCore.Data.Business;
 using MassSpectrometry;
 
-namespace MetaPAL.Models
+namespace MetaPAL.ControlledVocabulary
 {
     public static class PsiMsTypes
     {
@@ -156,14 +156,14 @@ namespace MetaPAL.Models
             Unknown
         }
 
-       /// <summary>
-       /// Convert mzLib's DissociationType to DissociationMethodType. Most dissociation methods map to a PSI term.
-       /// DissociationTypes Unknown, AnyActivationType, Custom, and Autodetect are converted to  DissociationMethodType.Unknown.
-       /// Null value in = null value out
-       /// </summary>
-       public static DissociationMethodType? ToDissociationMethodType(this DissociationType? type)
+        /// <summary>
+        /// Convert mzLib's DissociationType to DissociationMethodType. Most dissociation methods map to a PSI term.
+        /// DissociationTypes Unknown, AnyActivationType, Custom, and Autodetect are converted to  DissociationMethodType.Unknown.
+        /// Null value in = null value out
+        /// </summary>
+        public static DissociationMethodType? ToDissociationMethodType(this DissociationType? type)
         {
-            switch(type)
+            switch (type)
             {
                 case DissociationType.CID:
                     return DissociationMethodType.CollisionInducedDissociation;
