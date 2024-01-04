@@ -1,5 +1,6 @@
 ﻿using MassSpectrometry;
 using MathNet.Numerics.RootFinding;
+using MetaPAL.ControlledVocabulary;
 using Microsoft.CodeAnalysis;
 using MzLibUtil.NoiseEstimation;
 using System;
@@ -7,11 +8,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata;
 using ThermoFisher.CommonCore.Data.Business;
-using static MetaPAL.Models.PsiMsTypes;
+using static MetaPAL.ControlledVocabulary.PsiMsTypes;
 
 namespace MetaPAL.Models
 {
-    [Table("SpectrumMatch")]
+    [Table("MsDataScans")]
     public class MsDataScanModel
     {
         [Key]
@@ -70,6 +71,8 @@ namespace MetaPAL.Models
         /// is_a: MS:1000524 ! data file content
         /// is_a: MS:1000559 ! spectrum type
         /// </summary>
+        // TODO: Figure out what to do here as object is not a valid type for a database column
+        [NotMapped]
         public Object? MassSpectrum { get; protected set; }
         /// <summary>
         /// id: MS:1000465

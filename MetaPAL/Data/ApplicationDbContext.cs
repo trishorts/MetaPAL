@@ -18,5 +18,7 @@ namespace MetaPAL.Data
         }
 
         public DbSet<MetaPAL.Models.SpectrumMatch>? SpectrumMatch { get; set; }
+
+        public DbSet<MsDataScanModel>? MsDataScans { get; set; }
     }
 }
