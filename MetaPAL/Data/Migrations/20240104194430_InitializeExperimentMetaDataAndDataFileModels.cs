@@ -4,15 +4,28 @@
 
 namespace MetaPAL.Data.Migrations
 {
-    public partial class BuiltExperimentDataFileAndMetaData : Migration
+    public partial class InitializeExperimentMetaDataAndDataFileModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<int>(
+                name: "DataFileId",
+                table: "SpectrumMatch",
+                type: "int",
+                nullable: true);
+
             migrationBuilder.AddColumn<int>(
                 name: "ExperimentId",
                 table: "SpectrumMatch",
                 type: "int",
                 nullable: true);
+
+            migrationBuilder.AddColumn<int>(
+                name: "DataFileId",
+                table: "MsDataScans",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
 
             migrationBuilder.CreateTable(
                 name: "Experiments",
@@ -68,6 +81,11 @@ namespace MetaPAL.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_SpectrumMatch_DataFileId",
+                table: "SpectrumMatch",
+                column: "DataFileId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SpectrumMatch_ExperimentId",
                 table: "SpectrumMatch",
                 column: "ExperimentId");
@@ -83,6 +101,13 @@ namespace MetaPAL.Data.Migrations
                 column: "DataFileId");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_SpectrumMatch_DataFiles_DataFileId",
+                table: "SpectrumMatch",
+                column: "DataFileId",
+                principalTable: "DataFiles",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_SpectrumMatch_Experiments_ExperimentId",
                 table: "SpectrumMatch",
                 column: "ExperimentId",
@@ -92,6 +117,10 @@ namespace MetaPAL.Data.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_SpectrumMatch_DataFiles_DataFileId",
+                table: "SpectrumMatch");
+
             migrationBuilder.DropForeignKey(
                 name: "FK_SpectrumMatch_Experiments_ExperimentId",
                 table: "SpectrumMatch");
@@ -106,12 +135,24 @@ namespace MetaPAL.Data.Migrations
                 name: "Experiments");
 
             migrationBuilder.DropIndex(
+                name: "IX_SpectrumMatch_DataFileId",
+                table: "SpectrumMatch");
+
+            migrationBuilder.DropIndex(
                 name: "IX_SpectrumMatch_ExperimentId",
+                table: "SpectrumMatch");
+
+            migrationBuilder.DropColumn(
+                name: "DataFileId",
                 table: "SpectrumMatch");
 
             migrationBuilder.DropColumn(
                 name: "ExperimentId",
                 table: "SpectrumMatch");
+
+            migrationBuilder.DropColumn(
+                name: "DataFileId",
+                table: "MsDataScans");
         }
     }
 }

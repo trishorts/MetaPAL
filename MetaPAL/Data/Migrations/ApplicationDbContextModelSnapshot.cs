@@ -93,6 +93,9 @@ namespace MetaPAL.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("DataFileId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("DissociationMethod")
                         .HasColumnType("int");
 
@@ -185,6 +188,9 @@ namespace MetaPAL.Data.Migrations
                     b.Property<string>("BaseSequence")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("DataFileId")
+                        .HasColumnType("int");
 
                     b.Property<string>("DecoyContamTarget")
                         .HasColumnType("nvarchar(max)");
@@ -298,6 +304,8 @@ namespace MetaPAL.Data.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DataFileId");
 
                     b.HasIndex("ExperimentId");
 
@@ -508,11 +516,13 @@ namespace MetaPAL.Data.Migrations
 
             modelBuilder.Entity("MetaPAL.Models.DataFile", b =>
                 {
-                    b.HasOne("MetaPAL.Models.Experiment", null)
+                    b.HasOne("MetaPAL.Models.Experiment", "Experiment")
                         .WithMany("DataFiles")
                         .HasForeignKey("ExperimentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Experiment");
                 });
 
             modelBuilder.Entity("MetaPAL.Models.MetaData", b =>
@@ -524,6 +534,10 @@ namespace MetaPAL.Data.Migrations
 
             modelBuilder.Entity("MetaPAL.Models.SpectrumMatch", b =>
                 {
+                    b.HasOne("MetaPAL.Models.DataFile", null)
+                        .WithMany("SpectrumMatches")
+                        .HasForeignKey("DataFileId");
+
                     b.HasOne("MetaPAL.Models.Experiment", null)
                         .WithMany("SpectrumMatches")
                         .HasForeignKey("ExperimentId");
@@ -583,6 +597,8 @@ namespace MetaPAL.Data.Migrations
             modelBuilder.Entity("MetaPAL.Models.DataFile", b =>
                 {
                     b.Navigation("MetaData");
+
+                    b.Navigation("SpectrumMatches");
                 });
 
             modelBuilder.Entity("MetaPAL.Models.Experiment", b =>
