@@ -22,10 +22,10 @@ namespace Test
         public void TestBaseImplementaionOfExperiment()
         {
             // load dummy data
-            var metaData = new List<MetaData>
+            var metaData = new List<SampleMetaData>
             {
-                new MetaData(){Name = "Organism", Value = "Human"},
-                new MetaData(){Name = "Tissue", Value = "Pancreas"}
+                new SampleMetaData(){Name = "Organism", Value = "Human"},
+                new SampleMetaData(){Name = "Tissue", Value = "Pancreas"}
             };
 
             var spectralMatches = SpectrumMatchTsvReader.ReadPsmTsv(_psmPath, out _)
@@ -47,7 +47,7 @@ namespace Test
             if (context.Database.EnsureCreated())
             {
                 context.Experiments.Add(experiment);
-                context.MetaData.Add(new MetaData() { Name = "Age", Value = "21" });
+                context.MetaData.Add(new SampleMetaData() { Name = "Age", Value = "21" });
                 context.SaveChanges();
             }
 
@@ -71,8 +71,8 @@ namespace Test
 
             // ensure meta data was added to experiments correctly
             Assert.That(metaDataList.Count, Is.EqualTo(3));
-            Assert.That(experiment.DataFiles[0].MetaData.Count, Is.EqualTo(2));
-            Assert.That(experiment.DataFiles[1].MetaData.Count, Is.EqualTo(2));
+            Assert.That(experiment.DataFiles[0].ListSampleMetaData.Count, Is.EqualTo(2));
+            Assert.That(experiment.DataFiles[1].ListSampleMetaData.Count, Is.EqualTo(2));
         }
     }
 }

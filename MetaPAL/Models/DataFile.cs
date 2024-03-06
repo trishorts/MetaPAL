@@ -16,7 +16,7 @@ public class DataFile
 
     public string? FileNameWithoutExtension { get; set; }
 
-    public virtual List<MetaData> MetaData { get; set; }
+    public virtual List<SampleMetaData> MetaData { get; set; }
 
     // Commented out due to issue with loading the test mzml files
     //public virtual List<MsDataScanModel> DataScans { get; set; }
@@ -24,12 +24,12 @@ public class DataFile
     public virtual Experiment Experiment { get; set; }
     public virtual List<SpectrumMatch>? SpectrumMatches { get; set; }
 
-    public static DataFile FromMsDataFile(MsDataFile msDataFile, int experimentId, List<MetaData> metaData = null)
+    public static DataFile FromMsDataFile(MsDataFile msDataFile, int experimentId, List<SampleMetaData> metaData = null)
     {
         DataFile dataFile = new DataFile();
         dataFile.ExperimentId = experimentId;
         dataFile.FileNameWithoutExtension = Path.GetFileNameWithoutExtension(msDataFile.FilePath);
-        dataFile.MetaData = metaData ?? new List<MetaData>();
+        dataFile.MetaData = metaData ?? new List<SampleMetaData>();
 
         // Commented out due to issue with loading the test mzml files
         //dataFile.DataScans = msDataFile.GetMsDataScans()
@@ -38,7 +38,7 @@ public class DataFile
         return dataFile;
     }
 
-    public static DataFile FromFilePath(string filePath, int experimentId, List<MetaData> metaData = null)
+    public static DataFile FromFilePath(string filePath, int experimentId, List<SampleMetaData> metaData = null)
     {
         var msDataFile = MsDataFileReader.GetDataFile(filePath);
         return FromMsDataFile(msDataFile, experimentId, metaData);

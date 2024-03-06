@@ -25,7 +25,7 @@ namespace MetaPAL.Data
 
         public DbSet<DataFile> MsDataFiles { get; set; }
         public DbSet<Experiment> Experiments { get; set; }
-        public DbSet<MetaData> MetaData { get; set; }
+        public DbSet<SampleMetaData> MetaData { get; set; }
     }
 
     

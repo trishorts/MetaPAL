@@ -92,7 +92,48 @@ namespace MetaPAL.Models
 
         #endregion
 
-        
+        public IEnumerable<string> SpectrumMatchFeatures = new List<string>
+        {
+            nameof(Accession),
+            nameof(BaseSequence),
+            nameof(FullSequence),
+            nameof(EssentialSequence),
+            nameof(MonoisotopicMass),
+            nameof(Name),
+            nameof(GeneName),
+            nameof(OrganismName),
+            nameof(IntersectingSequenceVariations),
+            nameof(IdentifiedSequenceVariations),
+            nameof(Description),
+            nameof(SpliceSites),
+            nameof(StartAndEndResiduesInParentSequence),
+            nameof(PreviousResidue),
+            nameof(NextResidue),
+            nameof(FileNameWithoutExtension),
+            nameof(PrecursorScanNumber),
+            nameof(Ms2ScanNumber),
+            nameof(PrecursorCharge),
+            nameof(PrecursorMass),
+            nameof(PrecursorMz),
+            nameof(RetentionTime),
+            nameof(TotalIonCurrent),
+            nameof(MatchedFragmentIons),
+            nameof(Score),
+            nameof(SpectrumMatchCount),
+            nameof(SpectralAngle),
+            nameof(PEP),
+            nameof(PEP_QValue),
+            nameof(QValue),
+            nameof(QValueNotch),
+            nameof(DeltaScore),
+            nameof(DecoyContamTarget),
+            nameof(Notch),
+            nameof(AmbiguityLevel),
+            nameof(MissedCleavage),
+            nameof(MassDiffDa),
+            nameof(MassDiffPpm)
+        };
+
         public SpectrumMatch()
         {
                 

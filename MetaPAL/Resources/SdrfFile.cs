@@ -6,7 +6,7 @@ namespace MetaPAL.Resources
     /// <summary>
     /// IMPORTANT: This class returns unique MetaData pairs, but does not preserve order
     /// </summary>
-    public class SdrfFile : ResultFile<Models.MetaData>
+    public class SdrfFile : ResultFile<Models.SampleMetaData>
     {
         private static string _withinBraces = @"\[(.*?)\]";
         public SdrfFile(string path) : base(path, Software.Unspecified)
@@ -16,10 +16,10 @@ namespace MetaPAL.Resources
 
         public override void LoadResults()
         {
-            var results = new List<Models.MetaData>();
+            var results = new List<Models.SampleMetaData>();
             foreach (var (header, values) in ParseDelimitedFile(FilePath))
                 foreach (var value in values)
-                    results.Add(new Models.MetaData() { Name = header, Value = value });
+                    results.Add(new Models.SampleMetaData() { Name = header, Value = value });
             Results = results;
         }
 

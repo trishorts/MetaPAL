@@ -25,9 +25,6 @@ namespace MetaPAL.Controllers
         // GET: SpectrumMatches
         public async Task<IActionResult> Index()
         {
-            // TEMPORARY: remove all spectrum matches from database
-            //Task.Run(() => DataOperations.DataOperations.RemoveAll<SpectrumMatch>(_context)).Wait();
-            
 
             if (_context.SpectrumMatch == null)
                 return Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
@@ -100,9 +97,17 @@ namespace MetaPAL.Controllers
         }
 
         // GET: SpectrumMatches/Create
-        [Authorize]
         public IActionResult Create()
         {
+            List<SelectListItem> selectListItems = new List<SelectListItem>()
+            {
+                new SelectListItem("Select Spectrum Match Features", ""),
+                new SelectListItem("Base Sequence", "BaseSequence"),
+                new SelectListItem("Full Sequence", "FullSequence"),
+                new SelectListItem("Accession", "Accession"),
+            };
+
+            ViewBag.SpectrumMatchFeatures = selectListItems;
             return View();
         }
 
