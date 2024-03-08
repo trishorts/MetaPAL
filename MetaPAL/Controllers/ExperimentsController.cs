@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MetaPAL.Controllers
 {
-    public class Experiments : Controller
+    public class ExperimentsController : Controller
     {
         // GET: Experiments
         public ActionResult Index()
