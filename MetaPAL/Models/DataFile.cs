@@ -16,7 +16,7 @@ public class DataFile
 
     public string? FileNameWithoutExtension { get; set; }
 
-    public virtual List<SampleMetaData> MetaData { get; set; }
+    public virtual List<SampleMetaData> ListSampleMetaData { get; set; }
 
     // Commented out due to issue with loading the test mzml files
     //public virtual List<MsDataScanModel> DataScans { get; set; }
@@ -29,7 +29,7 @@ public class DataFile
         DataFile dataFile = new DataFile();
         dataFile.ExperimentId = experimentId;
         dataFile.FileNameWithoutExtension = Path.GetFileNameWithoutExtension(msDataFile.FilePath);
-        dataFile.MetaData = metaData ?? new List<SampleMetaData>();
+        dataFile.ListSampleMetaData = metaData ?? new List<SampleMetaData>();
 
         // Commented out due to issue with loading the test mzml files
         //dataFile.DataScans = msDataFile.GetMsDataScans()

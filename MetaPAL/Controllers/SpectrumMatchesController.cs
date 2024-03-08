@@ -25,7 +25,15 @@ namespace MetaPAL.Controllers
         // GET: SpectrumMatches
         public async Task<IActionResult> Index()
         {
+            List<SelectListItem> selectListItems = new List<SelectListItem>()
+            {
+                new SelectListItem("Select Spectrum Match Features", ""),
+                new SelectListItem("Base Sequence", "BaseSequence"),
+                new SelectListItem("Full Sequence", "FullSequence"),
+                new SelectListItem("Accession", "Accession"),
+            };
 
+            ViewBag.SpectrumMatchFeatures = selectListItems;
             if (_context.SpectrumMatch == null)
                 return Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
             return View(await _context.SpectrumMatch.ToListAsync());

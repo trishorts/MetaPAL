@@ -1,0 +1,219 @@
+﻿@model MetaPAL.Models.SpectrumMatch
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>SpectrumMatch</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="MatchedFragmentIons" class="control-label"></label>
+                <input asp-for="MatchedFragmentIons" class="form-control" />
+                <span asp-validation-for="MatchedFragmentIons" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FullSequence" class="control-label"></label>
+                <input asp-for="FullSequence" class="form-control" />
+                <span asp-validation-for="FullSequence" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ms2ScanNumber" class="control-label"></label>
+                <input asp-for="Ms2ScanNumber" class="form-control" />
+                <span asp-validation-for="Ms2ScanNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FileNameWithoutExtension" class="control-label"></label>
+                <input asp-for="FileNameWithoutExtension" class="form-control" />
+                <span asp-validation-for="FileNameWithoutExtension" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecursorScanNumber" class="control-label"></label>
+                <input asp-for="PrecursorScanNumber" class="form-control" />
+                <span asp-validation-for="PrecursorScanNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecursorCharge" class="control-label"></label>
+                <input asp-for="PrecursorCharge" class="form-control" />
+                <span asp-validation-for="PrecursorCharge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecursorMz" class="control-label"></label>
+                <input asp-for="PrecursorMz" class="form-control" />
+                <span asp-validation-for="PrecursorMz" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecursorMass" class="control-label"></label>
+                <input asp-for="PrecursorMass" class="form-control" />
+                <span asp-validation-for="PrecursorMass" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RetentionTime" class="control-label"></label>
+                <input asp-for="RetentionTime" class="form-control" />
+                <span asp-validation-for="RetentionTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Score" class="control-label"></label>
+                <input asp-for="Score" class="form-control" />
+                <span asp-validation-for="Score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpectrumMatchCount" class="control-label"></label>
+                <input asp-for="SpectrumMatchCount" class="form-control" />
+                <span asp-validation-for="SpectrumMatchCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Accession" class="control-label"></label>
+                <input asp-for="Accession" class="form-control" />
+                <span asp-validation-for="Accession" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpectralAngle" class="control-label"></label>
+                <input asp-for="SpectralAngle" class="form-control" />
+                <span asp-validation-for="SpectralAngle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QValue" class="control-label"></label>
+                <input asp-for="QValue" class="form-control" />
+                <span asp-validation-for="QValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PEP" class="control-label"></label>
+                <input asp-for="PEP" class="form-control" />
+                <span asp-validation-for="PEP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PEP_QValue" class="control-label"></label>
+                <input asp-for="PEP_QValue" class="form-control" />
+                <span asp-validation-for="PEP_QValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalIonCurrent" class="control-label"></label>
+                <input asp-for="TotalIonCurrent" class="form-control" />
+                <span asp-validation-for="TotalIonCurrent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeltaScore" class="control-label"></label>
+                <input asp-for="DeltaScore" class="form-control" />
+                <span asp-validation-for="DeltaScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notch" class="control-label"></label>
+                <input asp-for="Notch" class="form-control" />
+                <span asp-validation-for="Notch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BaseSequence" class="control-label"></label>
+                <input asp-for="BaseSequence" class="form-control" />
+                <span asp-validation-for="BaseSequence" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EssentialSequence" class="control-label"></label>
+                <input asp-for="EssentialSequence" class="form-control" />
+                <span asp-validation-for="EssentialSequence" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmbiguityLevel" class="control-label"></label>
+                <input asp-for="AmbiguityLevel" class="form-control" />
+                <span asp-validation-for="AmbiguityLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MissedCleavage" class="control-label"></label>
+                <input asp-for="MissedCleavage" class="form-control" />
+                <span asp-validation-for="MissedCleavage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MonoisotopicMass" class="control-label"></label>
+                <input asp-for="MonoisotopicMass" class="form-control" />
+                <span asp-validation-for="MonoisotopicMass" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MassDiffDa" class="control-label"></label>
+                <input asp-for="MassDiffDa" class="form-control" />
+                <span asp-validation-for="MassDiffDa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MassDiffPpm" class="control-label"></label>
+                <input asp-for="MassDiffPpm" class="form-control" />
+                <span asp-validation-for="MassDiffPpm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GeneName" class="control-label"></label>
+                <input asp-for="GeneName" class="form-control" />
+                <span asp-validation-for="GeneName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrganismName" class="control-label"></label>
+                <input asp-for="OrganismName" class="form-control" />
+                <span asp-validation-for="OrganismName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IntersectingSequenceVariations" class="control-label"></label>
+                <input asp-for="IntersectingSequenceVariations" class="form-control" />
+                <span asp-validation-for="IntersectingSequenceVariations" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdentifiedSequenceVariations" class="control-label"></label>
+                <input asp-for="IdentifiedSequenceVariations" class="form-control" />
+                <span asp-validation-for="IdentifiedSequenceVariations" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpliceSites" class="control-label"></label>
+                <input asp-for="SpliceSites" class="form-control" />
+                <span asp-validation-for="SpliceSites" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartAndEndResiduesInParentSequence" class="control-label"></label>
+                <input asp-for="StartAndEndResiduesInParentSequence" class="form-control" />
+                <span asp-validation-for="StartAndEndResiduesInParentSequence" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PreviousResidue" class="control-label"></label>
+                <input asp-for="PreviousResidue" class="form-control" />
+                <span asp-validation-for="PreviousResidue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NextResidue" class="control-label"></label>
+                <input asp-for="NextResidue" class="form-control" />
+                <span asp-validation-for="NextResidue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DecoyContamTarget" class="control-label"></label>
+                <input asp-for="DecoyContamTarget" class="form-control" />
+                <span asp-validation-for="DecoyContamTarget" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QValueNotch" class="control-label"></label>
+                <input asp-for="QValueNotch" class="form-control" />
+                <span asp-validation-for="QValueNotch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
