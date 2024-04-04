@@ -18,6 +18,7 @@ namespace MetaPAL.Models
 
         public List<ProteomicsSearchResult> ProteomicsSearchResults { get; set; }
         public List<ProteomicsQuantificationResult> ProteomicsQuantificationResults { get; set; }
+        public List<SpectrumMatch> SpectrumMatches { get; set; }
         public List<MsDataFile> MsDataFiles { get; set; }
 
 
