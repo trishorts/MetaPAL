@@ -19,8 +19,6 @@ namespace MetaPAL.Controllers
         // GET: ReposController
         public async Task<IActionResult> Index()
         {
-
-
             List<SelectListItem> selectListItems = new List<SelectListItem>()
             {
                 new SelectListItem("Title", "Title"),
@@ -31,8 +29,6 @@ namespace MetaPAL.Controllers
             if (_context.Repos == null)
                 return Problem("Entity set 'ApplicationDbContext.Repos'  is null.");
             return View(await _context.Repos.ToListAsync());
-
-
         }
 
         // GET: ReposController/Details/5
