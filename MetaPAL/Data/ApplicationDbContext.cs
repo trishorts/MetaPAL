@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Omics.Fragmentation;
+using Proteomics;
 
 namespace MetaPAL.Data
 {
@@ -18,12 +19,9 @@ namespace MetaPAL.Data
         {
             base.OnModelCreating(builder);
         }
-
+        public DbSet<Repo>? Repos { get; set; }
         public DbSet<SpectrumMatch>? SpectrumMatch { get; set; }
 
-        public DbSet<MsDataScanModel> MsDataScans { get; set; }
-
-        public DbSet<DataFile> MsDataFiles { get; set; }
         public DbSet<Experiment> Experiments { get; set; }
         public DbSet<SampleMetaData> MetaData { get; set; }
     }
