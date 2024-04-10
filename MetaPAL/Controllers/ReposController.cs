@@ -37,15 +37,12 @@ namespace MetaPAL.Controllers
             return View();
         }
 
-        public ActionResult Create(int id)
-        {
-            return View();
-        }
-        // GET: ReposController/Create
+        // GET: Repos/Create
         public IActionResult Create()
         {
             List<SelectListItem> selectListItems = new List<SelectListItem>()
             {
+                new SelectListItem("Select Repo Features", ""),
                 new SelectListItem("Title", "Title"),
                 new SelectListItem("Description", "Description"),
             };
@@ -54,7 +51,9 @@ namespace MetaPAL.Controllers
             return View();
         }
 
-        // POST: ReposController/Create
+        // POST: Repo/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Description")] Repo repo)
@@ -68,13 +67,7 @@ namespace MetaPAL.Controllers
             return View(repo);
         }
 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-        // POST: ReposController/Edit/5
-        [HttpPost]
-        //[ValidateAntiForgeryToken]
+        // GET: Repo/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Repos == null)
@@ -90,6 +83,9 @@ namespace MetaPAL.Controllers
             return View(repo);
         }
 
+        // POST: Repos/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description")] Repo repo)
@@ -122,14 +118,7 @@ namespace MetaPAL.Controllers
             return View(repo);
         }
 
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ReposController/Delete/5
-        [HttpPost]
-        //[ValidateAntiForgeryToken]
+        // GET: Repos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Repos == null)
@@ -147,14 +136,14 @@ namespace MetaPAL.Controllers
             return View(repo);
         }
 
-        // POST: SpectrumMatches/Delete/5
+        // POST: Repos/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Repos == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.SpectrumMatch'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Repo'  is null.");
             }
             var repo = await _context.Repos.FindAsync(id);
             if (repo != null)
