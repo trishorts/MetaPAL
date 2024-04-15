@@ -10,6 +10,7 @@
     <a asp-action="Create">Create New</a>
 </p>
 
+
 <table class="table">
     <thead>
         <tr>
@@ -17,7 +18,16 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-            @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HostingRepository)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HostingRepositoryURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatasetFtpLocation)
             </th>
         </tr>
     </thead>
@@ -31,7 +41,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
-                
+                <td>
+                    @Html.DisplayFor(modelItem => item.HostingRepository)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HostingRepositoryURL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatasetFtpLocation)
+                </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

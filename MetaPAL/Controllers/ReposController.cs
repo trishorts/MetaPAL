@@ -23,6 +23,8 @@ namespace MetaPAL.Controllers
             {
                 new SelectListItem("Title", "Title"),
                 new SelectListItem("Description", "Description"),
+                new SelectListItem("HostingRepositoryURL", "HostingRepositoryURL"),
+                new SelectListItem("DatasetFtpLocation", "DatasetFtpLocation"),
             };
 
             ViewBag.RepoFeatures = selectListItems;
@@ -45,6 +47,8 @@ namespace MetaPAL.Controllers
                 new SelectListItem("Select Repo Features", ""),
                 new SelectListItem("Title", "Title"),
                 new SelectListItem("Description", "Description"),
+                new SelectListItem("HostingRepositoryURL", "HostingRepositoryURL"),
+                new SelectListItem("DatasetFtpLocation", "DatasetFtpLocation"),
             };
 
             ViewBag.RepoFeatures = selectListItems;
@@ -56,7 +60,7 @@ namespace MetaPAL.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description")] Repo repo)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description,HostingRepositoryURL,DatasetFtpLocation")] Repo repo)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +92,7 @@ namespace MetaPAL.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description")] Repo repo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,HostingRepositoryURL,DatasetFtpLocation")] Repo repo)
         {
             if (id != repo.Id)
             {
